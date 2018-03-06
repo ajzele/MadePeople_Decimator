@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author      Branko Ajzele <ajzele@gmail.com, branko@foggyline.net>
+ * @category    MadePeople
+ * @package     MadePeople_Decimator
+ * @copyright   Copyright (c) Made People, info@madepeople.se, Frejgatan 18, 113 49 Stockholm
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+-->
+<config>
+    <modules>
+        <MadePeople_Decimator>
+            <version>1.0.0.0</version>
+        </MadePeople_Decimator>
+    </modules>
+    <global>
+        <models>
+            <madepeople_decimator>
+                <class>MadePeople_Decimator_Model</class>
+                <resourceModel>madepeople_decimator_resource</resourceModel>
+            </madepeople_decimator>
+            <madepeople_decimator_resource>
+                <class>MadePeople_Decimator_Model_Resource</class>
+                <entities>
+                    <log>
+                        <table>madepeople_decimator_log</table>
+                    </log>
+                </entities>
+            </madepeople_decimator_resource>
+        </models>
+        <helpers>
+            <madepeople_decimator>
+                <class>MadePeople_Decimator_Helper</class>
+            </madepeople_decimator>
+        </helpers>
+        <resources>
+            <madepeople_decimator_setup>
+                <setup>
+                    <module>MadePeople_Decimator</module>
+                </setup>
+            </madepeople_decimator_setup>
+        </resources>
+        <events>
+            <sales_order_invoice_pay>
+                <observers>
+                    <madepeople_decimator_log>
+                        <type>singleton</type>
+                        <class>madepeople_decimator/observer</class>
+                        <method>multiplyOrderByFactorAndLog</method>
+                    </madepeople_decimator_log>
+                </observers>
+            </sales_order_invoice_pay>
+        </events>
+    </global>
+    <default>
+        <sales>
+            <madepeople_decimator>
+                <active>0</active>
+                <m_factor>1.0000</m_factor>
+            </madepeople_decimator>
+        </sales>
+    </default>
+</config>

@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<config>
+    <modules>
+        <MadePeople_Decimator>
+            <active>true</active>
+            <codePool>local</codePool>
+        </MadePeople_Decimator>
+    </modules>
+</config>
